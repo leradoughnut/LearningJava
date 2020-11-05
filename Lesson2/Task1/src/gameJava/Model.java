@@ -5,24 +5,30 @@ import java.util.List;
 import java.util.Random;
 
 public class Model {
-    private final int pickedNumber;
+    private int pickedNumber;
     private int leftBound;
     private int rightBound;
-    private Random random = new Random();
     private final List<Integer> attempts = new ArrayList<>();
 
-    public Model(int leftBound, int rightBound) {
-        this.leftBound = leftBound;
-        this.rightBound = rightBound;
-        pickedNumber = pickNumber();
-    }
-
-    private int pickNumber() {
-        return leftBound + random.nextInt(rightBound - leftBound + 1);
+    public void pickNumber() {
+        Random random = new Random();
+        pickedNumber = leftBound + random.nextInt(rightBound - leftBound - 1) + 1;
     }
 
     public boolean isNumberInBounds(int number) {
-        return leftBound <= number && number <= rightBound;
+        return leftBound < number && number < rightBound;
+    }
+
+    public boolean isNumberGuessed(int number) {
+        addAttempt(number);
+        if (isGreaterThan(number)) {
+            setLeftBound(number);
+        } else if (isLessThan(number)) {
+            setRightBound(number);
+        } else {
+            return true;
+        }
+        return false;
     }
 
     public List<Integer> getAttempts() {
@@ -35,10 +41,6 @@ public class Model {
 
     public int getRightBound() {
         return rightBound;
-    }
-
-    public int getPickedNumber() {
-        return pickedNumber;
     }
 
     public void setRightBound(int rightBound) {

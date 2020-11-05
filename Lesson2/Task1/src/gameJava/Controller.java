@@ -1,5 +1,6 @@
 package gameJava;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Controller {
@@ -13,11 +14,11 @@ public class Controller {
 
     public void processUser() {
         Scanner scanner = new Scanner(System.in);
+        model.setLeftBound(GlobalConstants.PRIMARY_MIN_BARRIER);
+        model.setRightBound(GlobalConstants.PRIMARY_MAX_BARRIER);
+        model.pickNumber();
         greetings();
-        int number = enteringTheNumberInBounds(scanner);
-        while (!isNumberGuessed(number)) {
-            number = enteringTheNumberInBounds(scanner);
-        }
+        while (!isGuessedOrLessOrGreater(enteringTheNumberInBounds(scanner))) ;
         summary();
     }
 
@@ -44,24 +45,21 @@ public class Controller {
         return scanner.nextInt();
     }
 
-    private boolean isNumberGuessed(int number) {
-        model.addAttempt(number);
-        if (model.isGreaterThan(number)) {
-            view.printMessage(View.GREATER);
-            model.setLeftBound(number);
-        } else if (model.isLessThan(number)) {
-            view.printMessage(View.LESS);
-            model.setRightBound(number);
-        } else {
+    private boolean isGuessedOrLessOrGreater(int number) {
+        if (model.isNumberGuessed(number)) {
             view.printMessage(View.GUESSED);
             return true;
+        } else {
+            if (model.getLeftBound() == number)
+                view.printMessage(View.GREATER);
+            else view.printMessage(View.LESS);
         }
         return false;
     }
 
     private void summary() {
-        view.printMessage(String.format(View.SUMMARY, model.getPickedNumber(), model.getAttempts().size(),
-                model.getAttempts()));
+        List<Integer> attempts = model.getAttempts();
+        view.printMessage(String.format(View.SUMMARY, attempts.get(attempts.size() - 1), attempts.size(), attempts));
     }
 
 }

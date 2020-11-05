@@ -3,9 +3,7 @@ package gameJava;
 public class Main {
 
     public static void main(String[] args) {
-        int leftBound = 0;
-        int rightBound = 100;
-        Model model = new Model(leftBound, rightBound);
+        Model model = new Model();
         View view = new View();
         Controller controller = new Controller(model, view);
 
