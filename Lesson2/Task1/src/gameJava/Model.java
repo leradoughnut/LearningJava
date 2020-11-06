@@ -6,13 +6,13 @@ import java.util.Random;
 
 public class Model {
     private int pickedNumber;
-    private int leftBound;
-    private int rightBound;
+    private int leftBound = GlobalConstants.PRIMARY_MIN_BARRIER;
+    private int rightBound = GlobalConstants.PRIMARY_MAX_BARRIER;
     private final List<Integer> attempts = new ArrayList<>();
 
-    public void pickNumber() {
+    public int pickNumber() {
         Random random = new Random();
-        pickedNumber = leftBound + random.nextInt(rightBound - leftBound - 1) + 1;
+        return leftBound + random.nextInt(rightBound - leftBound - 1) + 1;
     }
 
     public boolean isNumberInBounds(int number) {
@@ -29,6 +29,22 @@ public class Model {
             return true;
         }
         return false;
+    }
+
+    public void setPickedNumber(int number){
+        pickedNumber = number;
+    }
+
+    public boolean isGreaterThan(int number) {
+        return pickedNumber > number;
+    }
+
+    public boolean isLessThan(int number) {
+        return pickedNumber < number;
+    }
+
+    public void addAttempt(int number) {
+        attempts.add(number);
     }
 
     public List<Integer> getAttempts() {
@@ -49,18 +65,6 @@ public class Model {
 
     public void setLeftBound(int leftBound) {
         this.leftBound = leftBound;
-    }
-
-    public boolean isGreaterThan(int number) {
-        return pickedNumber > number;
-    }
-
-    public boolean isLessThan(int number) {
-        return pickedNumber < number;
-    }
-
-    public void addAttempt(int number) {
-        attempts.add(number);
     }
 
 }

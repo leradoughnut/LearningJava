@@ -14,9 +14,7 @@ public class Controller {
 
     public void processUser() {
         Scanner scanner = new Scanner(System.in);
-        model.setLeftBound(GlobalConstants.PRIMARY_MIN_BARRIER);
-        model.setRightBound(GlobalConstants.PRIMARY_MAX_BARRIER);
-        model.pickNumber();
+        model.setPickedNumber(model.pickNumber());
         greetings();
         while (!isGuessedOrLessOrGreater(enteringTheNumberInBounds(scanner))) ;
         summary();
