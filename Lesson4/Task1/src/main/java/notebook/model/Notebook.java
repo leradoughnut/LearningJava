@@ -7,9 +7,15 @@ public class Notebook {
     private List<Note> notes = new ArrayList<>();
 
     public void addNote(Note note){
+        notes.add(note);
     }
 
-    public List<Note> getNotes() {
-        return notes;
+    public String toString(){
+        StringBuilder builder = new StringBuilder();
+        for (Note note : notes){
+            builder.append(note.toString());
+            builder.append("\n");
+        }
+        return builder.toString();
     }
 }
