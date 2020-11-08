@@ -8,18 +8,13 @@ import org.junit.jupiter.api.Test;
 
 class NoteTests {
     @Test
-    void isValidFirstName() {
-        assertFalse(Note.isValidFirstName("Ann&"));
-        assertTrue(Note.isValidFirstName("Anna-Maria"));
-
-    }
-
-    @Test
-    void isValidLastName() {
-        assertTrue(Note.isValidLastName("McDonald"));
-        assertTrue(Note.isValidLastName("L’Agnese"));
-        assertTrue(Note.isValidLastName("Lawrence-Depp"));
-        assertFalse(Note.isValidLastName("Roberts_A"));
+    void isValidName() {
+        assertFalse(Note.isValidName("Ann&"));
+        assertTrue(Note.isValidName("Anna-Maria"));
+        assertTrue(Note.isValidName("McDonald"));
+        assertTrue(Note.isValidName("L`Agnese"));
+        assertTrue(Note.isValidName("Lawrence-Depp"));
+        assertFalse(Note.isValidName("Roberts_A"));
     }
 
     @Test

@@ -12,9 +12,9 @@ public class View {
     // Resource Bundle Installation's
     private static final String MESSAGES_BUNDLE_NAME = "messages";
     public static final ResourceBundle bundle = ResourceBundle.getBundle(MESSAGES_BUNDLE_NAME,
-            new Locale("ua", "UA"));
+            //new Locale("ua", "UA"));
             //new Locale("ru", "RU"));
-            //new Locale("en", "US"));
+            new Locale("en", "US"));
     /**
      * @param strings that will be concatenated
      * @return concatenated strings
@@ -40,7 +40,7 @@ public class View {
      * @param message message that will be printed after "input"
      */
     public void printInputMessage(String message) {
-        printMessage(bundle.getString(TextConstants.INPUT) + message);
+        printMessage(concatenateStrings(bundle.getString(TextConstants.INPUT), message));
     }
 
     /**
