@@ -6,4 +6,5 @@ public interface TextConstants {
     String LAST_NAME = "input.last.name";
     String EMAIL = "input.email";
     String WRONG_INPUT = "input.wrong.input";
+    String SUCCESS = "input.successfully.added";
 }
