@@ -4,6 +4,10 @@ import notebook.view.View;
 
 import java.util.Scanner;
 
+import static notebook.view.TextConstants.ADD_MORE_OR_EXIT;
+import static notebook.view.TextConstants.WRONG_INPUT;
+import static notebook.view.View.bundle;
+
 public class UtilityController {
     private Scanner scanner;
     private View view;
@@ -21,4 +25,6 @@ public class UtilityController {
         }
         return string;
     }
+
+
 }

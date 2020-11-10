@@ -3,7 +3,7 @@ package notebook.model;
 public class Model {
     private Notebook notebook = new Notebook();
 
-    public void addNoteToNotebook(String firstName, String lastName, String email) {
+    public void addNoteToNotebook(String firstName, String lastName, String email) throws NotebookException {
         notebook.addNote(new Note(firstName, lastName, email));
     }
 

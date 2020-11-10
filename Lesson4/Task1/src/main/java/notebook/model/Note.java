@@ -11,6 +11,10 @@ public class Note {
         this.email = email;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
     @Override
     public String toString() {
         String whitespace = " ";
